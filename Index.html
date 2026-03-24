@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Profil Pramuka Modern</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+/* 🌌 CYBERPUNK BACKGROUND */
+body{
+background:radial-gradient(circle at top,#1a0025,#000);
+color:white;
+overflow-x:hidden;
+}
+
+/* 🔥 NEON TEXT */
+.neon{
+text-shadow:
+0 0 5px #ff004c,
+0 0 10px #ff004c,
+0 0 20px #ff004c,
+0 0 40px #ff004c;
+}
+
+/* 📱 NAV GLASS */
+nav{
+display:flex;
+justify-content:space-between;
+padding:15px 8%;
+background:rgba(0,0,0,0.5);
+backdrop-filter:blur(12px);
+position:sticky;
+top:0;
+border-bottom:1px solid rgba(255,0,100,0.3);
+}
+
+/* NAV LINK */
+nav a{
+color:white;
+margin:0 10px;
+text-decoration:none;
+transition:0.3s;
+}
+nav a:hover{
+color:#ff004c;
+text-shadow:0 0 10px #ff004c;
+}
+
+/* 🎥 SECTION ANIMATION */
+section{
+padding:60px 10%;
+opacity:0;
+transform:translateY(60px) scale(0.95);
+transition:all 0.8s cubic-bezier(0.22,1,0.36,1);
+}
+
+section.show{
+opacity:1;
+transform:translateY(0) scale(1);
+}
+
+/* 📦 CARD MODERN */
+.card{
+background:rgba(255,255,255,0.05);
+backdrop-filter:blur(15px);
+border:1px solid rgba(255,255,255,0.1);
+padding:20px;
+border-radius:20px;
+box-shadow:0 10px 40px rgba(0,0,0,0.5);
+}
+
+/* BIO */
+.bio-container{
+display:flex;
+gap:30px;
+flex-wrap:wrap;
+justify-content:center;
+}
+
+/* FOTO NEON */
+.bio-photo img{
+width:100%;
+max-width:320px;
+height:auto;
+border-radius:20px;
+border:3px solid #ff004c;
+object-fit:cover;
+box-shadow:0 0 25px #ff004c;
+}
+
+/* TABLE */
+table{
+width:100%;
+border-collapse:collapse;
+}
+
+td{
+padding:10px;
+border-bottom:1px solid rgba(255,255,255,0.1);
+}
+
+/* GALERI */
+.gallery{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
+gap:10px;
+}
+
+.gallery img{
+width:100%;
+border-radius:12px;
+transition:0.3s;
+}
+
+.gallery img:hover{
+transform:scale(1.08);
+box-shadow:0 0 15px #ff004c;
+}
+
+/* LIGHTBOX */
+.lightbox{
+position:fixed;
+top:0;left:0;
+width:100%;height:100%;
+background:rgba(0,0,0,0.9);
+display:none;
+justify-content:center;
+align-items:center;
+}
+
+.lightbox img{
+max-width:85%;
+border-radius:10px;
+}
+
+/* BUTTON */
+button{
+background:#ff004c;
+color:white;
+border:none;
+padding:8px;
+border-radius:6px;
+box-shadow:0 0 10px #ff004c;
+}
+
+/* EDIT */
+.editable:hover{
+outline:2px dashed #ff004c;
+cursor:pointer;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+.bio-photo img{
+width:90vw;
+max-width:350px;
+}
+}
+
+/* SMOOTH FADE */
+@keyframes floatIn{
+from{opacity:0;transform:translateY(60px) scale(0.95);}
+to{opacity:1;transform:translateY(0) scale(1);}
+}
+
+</style>
+</head>
+
+<body>
+
+<nav>
+<h2 class="neon">PROFIL</h2>
+<div>
+<a href="#bio">Profil</a>
+<a href="#tentang">Tentang</a>
+<a href="#galeri">Galeri</a>
+<a href="#" onclick="toggleAdmin()">Admin</a>
+</div>
+</nav>
+
+<!-- BIO -->
+<section id="bio">
+<div class="card bio-container">
+
+<div class="bio-photo">
+<img id="foto">
+<div id="uploadProfil" class="upload">
+<input type="file" id="inputFoto">
+</div>
+</div>
+
+<div style="flex:1;">
+<h2 class="editable neon" id="nama">Nama Anda</h2>
+
+<table>
+<tr><td>Nama Lengkap</td><td class="editable" id="nama">ALI RIDWANULLOH</td></tr>
+<tr><td>Jenis Kelamin</td><td class="editable" id="jk">Laki Laki</td></tr>
+<tr><td>NTA</td><td class="editable" id="nta">-</td></tr>
+<tr><td>Tempat, Tgl. Lahir</td><td class="editable" id="ttl">Majalengka, 06 Januari 2011</td></tr>
+<tr><td>Agama</td><td class="editable" id="agama">Islam</td></tr>
+<tr><td>Golongan Keanggotaan</td><td class="editable" id="gol">Penggalang Terap</td></tr>
+<tr><td>Alamat Rumah</td><td class="editable" id="alamat">Ds. Sindang Kec. Sindang Kab. Majalengka</td></tr>
+</table>
+
+</div>
+
+</div>
+</section>
+
+<!-- TENTANG -->
+<section id="tentang">
+<div class="card">
+<h2 class="neon">Perkenalkan</h2>
+
+<p class="editable" id="tentangText">
+Halo, saya <b>Ali Ridwanulloh</b>. Selamat datang di portofolio saya.<br><br>
+
+Saya lahir pada 06 Januari 2011 dan tinggal di Desa Sindang, Kabupaten Majalengka. Saat ini, saya menempuh pendidikan di SMP Negeri 1 Sindang.<br><br>
+
+Sejak kecil, saya dikenal sebagai pribadi yang aktif dan penuh semangat. Saya memiliki hobi futsal dan membaca Al-Qur’an. Saya percaya bahwa kebiasaan membaca Al-Qur’an membentuk karakter, sedangkan futsal melatih kerja sama.<br><br>
+
+Saya bergabung dengan kegiatan Pramuka di sekolah karena ingin melatih kedisiplinan dalam diri. Saya juga ingin menjadi teladan yang baik bagi teman-teman serta belajar hal-hal baru dari kegiatan Pramuka.<br><br>
+
+Dalam setiap latihan, kami belajar tentang kedisiplinan, kerja sama, dan tanggung jawab. Saya teringat saat mengikuti perkemahan Sabtu-Minggu, ketika regu kami harus mendirikan tenda di tengah hujan. Kami hampir menyerah, tetapi pembina mengingatkan kami tentang arti Dasa Dharma Pramuka. Dari situ, saya belajar bahwa pantang menyerah adalah kunci keberhasilan.<br><br>
+
+Semakin lama, saya semakin tertarik untuk mengembangkan diri. Saya mengenal tingkatan tertinggi dalam Pramuka, yaitu Pramuka Garuda. Untuk mencapainya dibutuhkan prestasi, kedisiplinan, sikap teladan, dan kemampuan di berbagai bidang.<br><br>
+
+Saya ingin menjadi Pramuka Garuda karena ingin menjadi pribadi yang lebih baik, mampu berkomitmen, bertanggung jawab, dan berprestasi. Selain itu, saya ingin membanggakan orang tua dan sekolah.<br><br>
+
+Bagi saya, Pramuka bukan hanya tentang seragam cokelat atau upacara, tetapi tempat belajar kehidupan. Melalui perjalanan menuju Pramuka Garuda, saya belajar tentang kepemimpinan, kepedulian, dan semangat untuk terus berkembang.<br><br>
+
+Saya percaya, menjadi Pramuka Garuda bukanlah akhir perjalanan, melainkan awal untuk menjadi generasi muda yang tangguh dan bermanfaat bagi bangsa.
+</p>
+
+</div>
+</section>
+
+<!-- GALERI -->
+<section id="galeri">
+<div class="card">
+<h2 class="neon">Galeri</h2>
+
+<div class="gallery" id="gallery"></div>
+
+<div id="uploadGaleri" class="upload">
+<input type="file" id="multiFoto" multiple>
+</div>
+
+</div>
+</section>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+<img id="lightbox-img">
+</div>
+
+<!-- MUSIC -->
+<audio id="bgMusic" autoplay loop>
+<source src="lirik lagu pramuka - __sebatas patok tenda]].mp3">
+</audio>
+
+<button onclick="toggleMusic()" style="position:fixed;bottom:20px;right:20px;">🎵</button>
+
+<script>
+
+/* ADMIN */
+if(!localStorage.getItem("adminPass")){
+localStorage.setItem("adminPass","123456");
+}
+
+let admin=false;
+
+function toggleAdmin(){
+let pass=prompt("Password:");
+if(pass!==localStorage.getItem("adminPass")) return alert("Salah!");
+
+admin=!admin;
+
+uploadProfil.style.display=admin?"block":"none";
+uploadGaleri.style.display=admin?"block":"none";
+
+document.querySelectorAll(".editable").forEach(el=>{
+el.contentEditable=admin;
+});
+}
+
+/* FOTO */
+inputFoto.onchange=function(){
+let reader=new FileReader();
+reader.onload=e=>{
+foto.src=e.target.result;
+localStorage.setItem("foto",e.target.result);
+};
+reader.readAsDataURL(this.files[0]);
+};
+
+/* GALERI */
+multiFoto.onchange=function(){
+[...this.files].forEach(file=>{
+let reader=new FileReader();
+reader.onload=e=>{
+
+let wrapper=document.createElement("div");
+wrapper.style.position="relative";
+
+let img=document.createElement("img");
+img.src=e.target.result;
+
+let del=document.createElement("button");
+del.innerHTML="❌";
+del.style.position="absolute";
+del.style.top="5px";
+del.style.right="5px";
+del.style.padding="5px";
+del.style.fontSize="12px";
+
+del.onclick=()=>{
+wrapper.remove();
+localStorage.setItem("galeri",gallery.innerHTML);
+};
+
+wrapper.appendChild(img);
+wrapper.appendChild(del);
+gallery.appendChild(wrapper);
+
+localStorage.setItem("galeri",gallery.innerHTML);
+initLightbox();
+};
+reader.readAsDataURL(file);
+});
+};
+
+/* LIGHTBOX */
+function initLightbox(){
+document.querySelectorAll(".gallery img").forEach(img=>{
+img.onclick=()=>{
+lightbox.style.display="flex";
+lightboxImg.src=img.src;
+};
+});
+lightbox.onclick=()=>lightbox.style.display="none";
+}
+
+/* SAVE */
+document.querySelectorAll(".editable").forEach(el=>{
+el.oninput=()=>{
+localStorage.setItem(el.id,el.innerText);
+};
+});
+
+/* LOAD */
+window.onload=function(){
+
+if(localStorage.getItem("foto")){
+foto.src=localStorage.getItem("foto");
+}
+
+if(localStorage.getItem("galeri")){
+gallery.innerHTML=localStorage.getItem("galeri");
+initLightbox();
+}
+
+document.querySelectorAll(".editable").forEach(el=>{
+if(localStorage.getItem(el.id)){
+el.innerText=localStorage.getItem(el.id);
+}
+});
+
+/* SCROLL ANIMATION */
+const observer=new IntersectionObserver(entries=>{
+entries.forEach(entry=>{
+if(entry.isIntersecting){
+entry.target.classList.add("show");
+}
+});
+},{threshold:0.15});
+
+document.querySelectorAll("section").forEach(sec=>{
+observer.observe(sec);
+});
+
+};
+
+/* MUSIC */
+function toggleMusic(){
+let m=document.getElementById("bgMusic");
+m.paused?m.play():m.pause();
+}
+
+document.body.addEventListener("click",()=>document.getElementById("bgMusic").play(),{once:true});
+
+</script>
+
+</body>
+</html>
+
